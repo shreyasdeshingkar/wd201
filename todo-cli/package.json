@@ -1,0 +1,19 @@
+{
+  "name": "todo-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "assert.js",
+  "scripts": {
+    "test": "jest",
+    "prepare": "cd .. && husky install todo-cli/.husky"
+  },
+  "author": "shreyas deshingkar <shreyasdeshingkar@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.48.0",
+    "husky": "^8.0.3",
+    "jest": "^29.6.4",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3"
+  }
+}
