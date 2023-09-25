@@ -16,8 +16,8 @@ module.exports = (sequelize, DataTypes) => {
       return this.create({ title: title, dueDate: dueDate, completed: false });
     }
 
-    static getTodos(){
-      return this.findAll();
+    static getTodos() {
+      return this.findAll({ order: [["id", "ASC"]] });
     }
 
     markAsCompleted() {
@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Todo",
-    }
+    },
   );
   return Todo;
 };

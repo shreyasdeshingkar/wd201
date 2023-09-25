@@ -30,7 +30,7 @@ describe("Todo Application", function () {
     });
     expect(response.statusCode).toBe(200);
     expect(response.header["content-type"]).toBe(
-      "application/json; charset=utf-8"
+      "application/json; charset=utf-8",
     );
     const parsedResponse = JSON.parse(response.text);
     expect(parsedResponse.id).toBeDefined();
@@ -38,7 +38,7 @@ describe("Todo Application", function () {
 
   test("Marks a todo with the given ID as complete", async () => {
     const response = await agent.post("/todos").send({
-      title: "Buy milk",
+      title: "Do homework",
       dueDate: new Date().toISOString(),
       completed: false,
     });
@@ -86,4 +86,4 @@ describe("Todo Application", function () {
     const parsedDeleteResponse = JSON.parse(deleteTodoResponse.text);
     expect(parsedDeleteResponse).toBe(true);
   });
-})
+});

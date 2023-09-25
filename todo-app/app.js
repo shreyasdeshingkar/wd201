@@ -6,29 +6,20 @@ const bodyParser = require("body-parser");
 const path = require("path");
 app.use(bodyParser.json());
 
-app.set("view engine","ejs");
-
-
+app.set("view engine", "ejs");
 
 app.get("/", async (request, response) => {
   const allTodos = await Todo.getTodos();
-  if(request.accepts("html")){
-    response.render('index',(
-      allTodos
-    ));
-  }
-  else{
+  if (request.accepts("html")) {
+    response.render("index", allTodos);
+  } else {
     response.json({
-      allTodos
-    })
+      allTodos,
+    });
   }
-  
 });
 
-
-app.use(express.static(path.join(__dirname,'public')));
-
-
+app.use(express.static(path.join(__dirname + "public")));
 
 app.get("/todos", async function (_request, response) {
   console.log("Processing list of all Todos ...");
