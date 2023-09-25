@@ -88,3 +88,5 @@ app.delete("/todos/:id", async function (request, response) {
 });
 
 module.exports = app;
+
+// "pretest": "NODE_ENV=test npx sequelize-cli db:drop && NODE_ENV=test npx sequelize-cli db:create",
