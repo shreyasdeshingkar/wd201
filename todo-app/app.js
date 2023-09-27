@@ -25,7 +25,7 @@ app.get("/todos", async function (_request, response) {
   console.log("Processing list of all Todos ...");
   // FILL IN YOUR CODE HERE
   try {
-    const todos = await Todo.findAll();
+    const todos = await Todo.findAll({ order: [["id", "ASC"]] });
     return response.send(todos);
   } catch (error) {
     console.log(error);
@@ -37,15 +37,15 @@ app.get("/todos", async function (_request, response) {
   // response.send(todos)
 });
 
-app.get("/todos/:id", async function (request, response) {
-  try {
-    const todo = await Todo.findByPk(request.params.id);
-    return response.json(todo);
-  } catch (error) {
-    console.log(error);
-    return response.status(422).json(error);
-  }
-});
+// app.get("/todos/:id", async function (request, response) {
+//   try {
+//     const todo = await Todo.findByPk(request.params.id);
+//     return response.json(todo);
+//   } catch (error) {
+//     console.log(error);
+//     return response.status(422).json(error);
+//   }
+// });
 
 app.post("/todos", async function (request, response) {
   try {
