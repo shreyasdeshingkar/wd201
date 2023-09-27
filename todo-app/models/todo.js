@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       return this.create({ title: title, dueDate: dueDate, completed: false });
     }
 
-    static getTodos() {
+    static async getTodos() {
       return this.findAll({ order: [["id", "ASC"]] });
     }
 
