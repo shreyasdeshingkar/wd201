@@ -31,11 +31,10 @@ app.get("/todos", async function (_request, response) {
     console.log(error);
     return response.status(422).json(error);
   }
-
-  // First, we have to query our PostgerSQL database using Sequelize to get list of all Todos.
-  // Then, we have to respond with all Todos, like:
-  // response.send(todos)
 });
+// First, we have to query our PostgerSQL database using Sequelize to get list of all Todos.
+// Then, we have to respond with all Todos, like:
+// response.send(todos)
 
 // app.get("/todos/:id", async function (request, response) {
 //   try {
@@ -47,13 +46,30 @@ app.get("/todos", async function (_request, response) {
 //   }
 // });
 
-app.post("/todos", async function (request, response) {
+app.get("/todos", async function (_request, response) {
+  console.log("Processing list of all Todos ...");
+  // FILL IN YOUR CODE HERE
   try {
-    const todo = await Todo.addTodo(request.body);
-    return response.json(todo);
+    const todos = await Todo.findAll({ order: [["id", "ASC"]] });
+    return response.send(todos);
   } catch (error) {
     console.log(error);
     return response.status(422).json(error);
+  }
+});
+
+app.post("/todos", async (request, response) => {
+  console.log("Creating a todo", request.body);
+  //Todo
+  try {
+    const todos = await Todo.addTodo({
+      title: request.body.title,
+      duedate: request.body.duedate,
+    });
+    return response.json(todos);
+  } catch (error) {
+    console.log(error);
+    return response.status(422).json();
   }
 });
 
