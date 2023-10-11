@@ -85,7 +85,10 @@ app.put("/todos/:id", async (request, response) => {
 });
 
 app.delete("/todos/:id", async (request, response) => {
+<<<<<<< HEAD
   
+=======
+>>>>>>> 0aa11f8 (l9 updated)
   console.log("Delete a todo with ID: ", request.params.id);
   try {
     await Todo.remove(request.params.id);
