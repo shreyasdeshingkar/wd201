@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,22 +7,19 @@
     <meta name="csrf-token" content="<%= csrfToken %>">
     <link rel="stylesheet" href="./css/styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Shreyas Todo App</title>
-
-
+    <title> Shreyas Todo App</title>
 </head>
-
-<body>
+<body style="display: flex; justify-content: center; align-items: center; height: 100vh;">
     <div class="grid grid-cols-6">
-        <div class="col-start-3 col-span-2">
+        <div class="col-start-3 col-span-2" style="background: rgb(255, 254, 252); box-shadow: 3px 3px 9px 1px black; padding: 20px; border-radius: 4px;">
+            <%- include ('notifications.ejs') %>
             <%- include ('header.ejs') %>
-                <p class="py-2">Welcome to the Todo app</p>
-                <p class="py-2">New here <a href="/signup" class="text-green-600">Sign-up now</a></p>
-                <p class="py-2">Already have an account <a href="/login" class="text-green-600">Sign-in</a></p>
-
-
+            <%- include ('footer.ejs') %>
+            <p class="py-2 text-xl italic">A simple <span class="underline font-semibold">Todo manager</span> app for managing your tasks.</p>
+            <p class="py-2 text-lg">New here? <a href="/signup" class="text-green-600 font-semibold hover:underline">Sign-up here</a></p>
+            <p class="py-2 text-lg">Already have an account? <a href="/login" class="text-green-600 font-semibold hover:underline">Sign-in</a></p>
+            
         </div>
     </div>
 </body>
-
 </html>

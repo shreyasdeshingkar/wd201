@@ -280,21 +280,6 @@ app.put("/todos/:id/markAsCompleted", async (request, response) => {
   }
 });
 
-<<<<<<< HEAD
-app.delete("/todos/:id", async (request, response) => {
-<<<<<<< HEAD
-  
-=======
->>>>>>> 0aa11f8 (l9 updated)
-  console.log("Delete a todo with ID: ", request.params.id);
-  try {
-    await Todo.remove(request.params.id);
-    return response.json({ success: true });
-  } catch (err) {
-    return response.status(422).json(err);
-  }
-});
-=======
 app.delete(
   "/todos/:id",
   connnectEnsureLogin.ensureLoggedIn(),
@@ -310,6 +295,5 @@ app.delete(
     }
   },
 );
->>>>>>> 63fd876 (L10 Changes are done)
 
 module.exports = app;
