@@ -1,7 +1,30 @@
 body {
+  margin: 0px;
   font: black;
   font-family: "Courier New", Courier, monospace;
   background: white;
+
+  width: 100vw;
+  height: 100vw;
+  
+  background-color: rgb(200, 224, 212);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  height: 100vh;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .Todo-Item:hover .trash-icon {
