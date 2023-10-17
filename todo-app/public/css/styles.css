@@ -6,7 +6,7 @@ body {
 
   width: 100vw;
   height: 100vw;
-  
+
   background-color: rgb(200, 224, 212);
   background-size: 400% 400%;
   animation: gradient 10s ease infinite;
