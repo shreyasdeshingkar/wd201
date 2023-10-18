@@ -1,16 +1,16 @@
 body {
   margin: 0px;
   font: black;
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'Times New Roman', Times, serif;
   background: white;
 
   width: 100vw;
-  height: 100vw;
+  height: 400vw;
 
   background-color: rgb(200, 224, 212);
   background-size: 400% 400%;
   animation: gradient 10s ease infinite;
-  height: 100vh;
+  height: 500vh;
 }
 
 @keyframes gradient {
