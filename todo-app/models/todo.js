@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 "use strict";
 const { Model, Op } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
@@ -6,21 +7,14 @@ module.exports = (sequelize, DataTypes) => {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
+     * The models/index file will call this method automatically.
      */
-    // eslint-disable-next-line no-unused-vars
     static associate(models) {
       // define association here
-      
     }
 
-    static addTodo({ title, dueDate, userId }) {
-      return this.create({
-        title: title,
-        dueDate: dueDate,
-        completed: false,
-        userId,
-      });
+    static addTodo({ title, dueDate }) {
+      return this.create({ title: title, dueDate: dueDate, completed: false });
     }
 
     markAsCompleted() {
@@ -35,60 +29,55 @@ module.exports = (sequelize, DataTypes) => {
       return this.findAll({ order: [["id", "ASC"]] });
     }
 
-    static overdue(userId) {
+    static overdue() {
       return this.findAll({
         where: {
           dueDate: {
             [Op.lt]: new Date().toLocaleDateString("en-CA"),
           },
-          userId: userId,
           completed: false,
         },
         order: [["id", "ASC"]],
       });
     }
 
-    static dueToday(userId) {
+    static dueToday() {
       return this.findAll({
         where: {
           dueDate: {
             [Op.eq]: new Date().toLocaleDateString("en-CA"),
           },
-          userId: userId,
           completed: false,
         },
         order: [["id", "ASC"]],
       });
     }
 
-    static dueLater(userId) {
+    static dueLater() {
       return this.findAll({
         where: {
           dueDate: {
             [Op.gt]: new Date().toLocaleDateString("en-CA"),
           },
-          userId: userId,
           completed: false,
         },
         order: [["id", "ASC"]],
       });
     }
 
-    static completedItems(userId) {
+    static completedItems() {
       return this.findAll({
         where: {
           completed: true,
-          userId: userId,
         },
         order: [["id", "ASC"]],
       });
     }
 
-    static async remove(id, userId) {
+    static async remove(id) {
       return this.destroy({
         where: {
           id,
-          userId,
         },
       });
     }
