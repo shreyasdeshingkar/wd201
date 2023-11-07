@@ -14,7 +14,7 @@ function extractCsrfToken(res) {
 describe("Todo test suite", () => {
   beforeAll(async () => {
     await db.sequelize.sync({ force: true });
-    server = app.listen(4000, () => {});
+    server = app.listen(4000, () => { });
     agent = request.agent(server);
   });
 
@@ -65,14 +65,20 @@ describe("Todo test suite", () => {
   });
 
   test("Marking a sample overdue item as completed", async () => {
-    
+
+
     const overdueRes = await agent.post("/todos").send({
       title: "Overdue Todo",
       dueDate: "2021-01-01",
       completed: false,
     });
 
+
+
     
+
+    // Extract the ID of the created todo
+
     const overdueTodoId = Number(overdueRes.header.location.split("/")[2]);
 
     const markCompletedResponse = await agent.put(`/todos/${overdueTodoId}`).send({
@@ -86,7 +92,11 @@ describe("Todo test suite", () => {
 
   test("Toggle a completed item to incomplete when clicked on it", async () => {
     const completedTodo = await agent.post("/todos").send({
-      title: "This is completed Todo",
+
+      
+
+      title: "complete Todo",
+
       dueDate: new Date().toISOString().split("T")[0],
       completed: true,
     });
