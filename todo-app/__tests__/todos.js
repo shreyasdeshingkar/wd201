@@ -103,10 +103,46 @@ describe("Todo test suite", () => {
 
     const completedTodoId = Number(completedTodo.header.location.split("/")[2]);
 
+    // eslint-disable-next-line no-unused-vars
     const toggleResponse = await agent.put(`/todos/${completedTodoId}`).send({
       _csrf: extractCsrfToken(completedTodo),
       completed: false,
     });
+
+
+    // Create an overdue todo
+    const overdueRes = await agent.post("/todos").send({
+      title: "Overdue Todo",
+      dueDate: "2015-11-01",
+      completed: false,
+    });
+
+    // Extract the ID of the created todo
+    const overdueTodoId = Number(overdueRes.header.location.split("/")[2]);
+
+    const markCompletedResponse = await agent.put(`/todos/${overdueTodoId}`).send({
+      _csrf: extractCsrfToken(overdueRes),
+      completed: true,
+    });
+
+    expect(markCompletedResponse.status).toBe(200);
+    expect(markCompletedResponse.body.completed).toBe(true);
+  });
+
+  test("Toggle a completed item to incomplete when clicked on it", async () => {
+    const completedTodo = await agent.post("/todos").send({
+      title: "complete Todo",
+      dueDate: new Date().toISOString().split("T")[0],
+      completed: true,
+    });
+
+    const completedTodoId = Number(completedTodo.header.location.split("/")[2]);
+
+    const toggleResponse = await agent.put(`/todos/${completedTodoId}`).send({
+      _csrf: extractCsrfToken(completedTodo),
+      completed: false,
+    });
+
 
     expect(toggleResponse.status).toBe(200);
     expect(toggleResponse.body.completed).toBe(false);
